@@ -1,6 +1,5 @@
 import * as path from 'path';
 import { createFilter, addExtension } from 'rollup-pluginutils';
-import { compileFile } from 'bsb-js';
 
 import getBsConfigModuleOptions from './helpers/getBsConfigModuleOptions';
 import jsFilePath from './helpers/jsFilePath';
@@ -9,6 +8,14 @@ import {
   isStandardLibrary,
   resolveStandardLibrary,
 } from './helpers/standardLibraryHelper';
+import { compileFile } from './helpers/build';
+
+/*
+  TODO
+  add tests
+  show exact code where the error is
+  improve code quality, split up code
+ */
 
 export default (options = {}) => {
   const filter = createFilter(
@@ -82,27 +89,25 @@ https://github.com/shrynx/rollup-plugin-bucklescript#caveats`
         inSourceBuild,
         bsSuffix
       );
+      // console.log(buildDir, moduleDir, compiledFilePath);
 
-      return compileFile(
-        buildDir,
-        moduleDir,
-        compiledFilePath
-      ).then(({ src, warnings, errors }) => {
-        if (showWarnings) {
-          warnings.forEach(message => {
-            this.warn(message);
-          });
+      return compileFile(buildDir, moduleDir, compiledFilePath).then(
+        ({ src, warnings, errors }) => {
+          if (showWarnings) {
+            warnings.forEach(message => {
+              this.warn(message);
+            });
+          }
+          if (errors.length > 0) {
+            throw new Error(errors[errors.length - 1]);
+          } else {
+            return {
+              code: src,
+              map: { mappings: '' },
+            };
+          }
         }
-
-        if (errors.length > 0) {
-          throw new Error(errors[errors.length - 1]);
-        } else {
-          return {
-            code: src,
-            map: { mappings: '' },
-          };
-        }
-      });
+      );
     },
   };
 };

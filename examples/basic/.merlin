@@ -1,7 +1,7 @@
 ####{BSB GENERATED: NO EDIT
-FLG -ppx /Users/shriyans/Projects/javascript/libraries/rollup-plugin-bucklescript/examples/basic/node_modules/bs-platform/bin/bsppx.exe
-S /Users/shriyans/Projects/javascript/libraries/rollup-plugin-bucklescript/examples/basic/node_modules/bs-platform/lib/ocaml
-B /Users/shriyans/Projects/javascript/libraries/rollup-plugin-bucklescript/examples/basic/node_modules/bs-platform/lib/ocaml
+FLG -ppx /home/august/open-source/rollup-plugin-bucklescript/examples/basic/node_modules/bs-platform/lib/bsppx.exe
+S /home/august/open-source/rollup-plugin-bucklescript/examples/basic/node_modules/bs-platform/lib/ocaml
+B /home/august/open-source/rollup-plugin-bucklescript/examples/basic/node_modules/bs-platform/lib/ocaml
 FLG -nostdlib -no-alias-deps -color always
 FLG -w -30-40+6+7+27+32..39+44+45+101
 S src

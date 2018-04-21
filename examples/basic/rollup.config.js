@@ -1,4 +1,7 @@
-import bucklescript from 'rollup-plugin-bucklescript';
+import bucklescript from '/home/august/open-source/rollup-plugin-bucklescript/dist/rollup-plugin-bucklescript.es.js';
+// import bucklescript from "/home/august/open-source/rollup-plugin-bucklescript/src";
+
+console.log(bucklescript);
 
 export default {
   input: 'src/index.js',
